@@ -143,8 +143,10 @@ stage2_window
 # Stage 2.3 — Store-type composition
 
 ```{r s2-type, cache=TRUE}
+# A+B replaced by the balanced C+D mix: with only 17 Type-B stores against 602
+# Type-A, an A+B group is ~97% Type A; C+D (148 + 348) is a genuine two-type mix.
 stage2_type <- imap_dfr(list("A only"=function(d) filter(d,StoreType==1),
-  "B only"=function(d) filter(d,StoreType==2), "A+B"=function(d) filter(d,StoreType %in% c(1,2)),
+  "B only"=function(d) filter(d,StoreType==2), "C+D"=function(d) filter(d,StoreType %in% c(3,4)),
   "Full"=function(d) d), function(f,lab) run_panel(f(df),lab)) %>%
   mutate(across(where(is.numeric), ~round(.x,1)))
 stage2_type
